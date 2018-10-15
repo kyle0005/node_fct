@@ -21,19 +21,6 @@ app.all('*', (req, res, next) => {
 	}
 });
 
-const MongoStore = connectMongo(session);
-app.use(cookieParser());
-app.use(session({
-	  name: config.session.name,
-		secret: config.session.secret,
-		resave: true,
-		saveUninitialized: false,
-		cookie: config.session.cookie,
-		store: new MongoStore({
-	  url: config.url
-	})
-}))
-
 router(app);
 
 app.use(history());
